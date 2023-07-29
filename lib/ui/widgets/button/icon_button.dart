@@ -1,30 +1,64 @@
 import 'package:flutter/material.dart';
 import 'package:test_application/ui/shared/colors.dart';
+import 'package:test_application/ui/widgets/blog.dart';
 
-/// Collection of IconButtons  that are using in your app
+/// Collection of IconButtons that are using in your app
 
-class InfoIcon extends StatelessWidget {
+class DeleteIcon extends StatelessWidget {
   final VoidCallback? onTap;
   final bool isFill;
   final Color? color;
   final double? size;
 
-  const InfoIcon(
+  const DeleteIcon(
       {Key? key, this.onTap, this.isFill = true, this.color, this.size})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
-    return InkWell(
+    return Stroke(
+      radius: width * 0.06,
+      backgroundColor: white,
       onTap: onTap,
-      child: Icon(
-        isFill ? Icons.info : Icons.info_outline,
-        size: size ?? width * 0.0533,
-        color: color ?? primaryDark,
+      child: Padding(
+        padding:  EdgeInsets.all(width * 0.0213),
+        child: Icon(
+          isFill ? Icons.delete : Icons.delete_outline_outlined,
+          size: size ?? width * 0.0533,
+          color: color ?? primaryDark,
+        ),
       ),
     );
   }
+}
+
+class AddToClipBoardIcon extends StatelessWidget {
+final VoidCallback? onTap;
+final Color? color;
+final double? size;
+
+const AddToClipBoardIcon(
+    {Key? key, this.onTap, this.color, this.size})
+    : super(key: key);
+
+@override
+Widget build(BuildContext context) {
+  var width = MediaQuery.of(context).size.width;
+  return Stroke(
+    radius: width * 0.06,
+    backgroundColor: white,
+    onTap: onTap,
+    child: Padding(
+      padding:  EdgeInsets.all(width * 0.0213),
+      child: Icon(
+        Icons.copy,
+        size: size ?? width * 0.0533,
+        color: color ?? primaryDark,
+      ),
+    ),
+  );
+}
 }
 
 class ArrowForwardIcon extends StatelessWidget {
@@ -66,25 +100,6 @@ class ArrowBackIcon extends StatelessWidget {
         Icons.arrow_back_ios_sharp,
         color: color ?? primaryDark,
         size: size ?? width * 0.032,
-      ),
-    );
-  }
-}
-
-class ClosingIcon extends StatelessWidget {
-  final VoidCallback? onTap;
-
-  const ClosingIcon({Key? key, this.onTap}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
-    return InkWell(
-      onTap: onTap,
-      child: Icon(
-        Icons.close,
-        size: width * 0.0533,
-        color: backingIconColor,
       ),
     );
   }

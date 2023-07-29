@@ -12,7 +12,6 @@ class Assets {
       'assets/images/second-onboarding-page.png';
   static const String thirdOnBoardingPage =
       'assets/images/third-onboarding-page.png';
-  static const String defaultHero = 'assets/images/hero.png';
   static const String placeHolder = 'assets/images/place-holder.png';
 
   ///fonts

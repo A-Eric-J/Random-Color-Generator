@@ -1,5 +1,3 @@
-import 'package:test_application/const_values/assets.dart';
-import 'package:test_application/providers/color_provider.dart';
 import 'package:test_application/providers/main_screen_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:test_application/ui/shared/colors.dart';
@@ -17,14 +15,6 @@ class MainView extends StatefulWidget {
 }
 
 class _MainViewState extends State<MainView> {
-  @override
-  void initState() {
-    super.initState();
-    var colorProvider = Provider.of<ColorProvider>(context,listen: false);
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      colorProvider.setHexColor(whiteHexColor);
-    });
-  }
 
   @override
   Widget build(BuildContext context) {

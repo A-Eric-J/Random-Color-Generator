@@ -14,7 +14,7 @@ class OnBoardingPageIndicator extends StatelessWidget {
   });
 
   Color _getPageIndicatorColor(int pageIndex) {
-    return currentPage > pageIndex ? brandOrangeColor : white.withOpacity(0.25);
+    return currentPage > pageIndex ? brandMainColor : white.withOpacity(0.25);
   }
 
   double get indicatorLength => pi / 2;

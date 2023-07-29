@@ -17,7 +17,21 @@ const String thirdOnBoardingPageDesText = 'Third Description';
 
 /// Bottom navigation
 const String homeScreenText = 'Home';
-const String helloThereText = 'Hello there';
 const String colorsScreenText = 'Colors';
+
+/// HomeScreen
+const String helloThereText = 'Hello there';
+const String tapToGeneratePureColorText = 'Tap to generate Pure Color!';
+const String tapToGenerateGradientColorText = 'Tap to generate Gradient Color!';
+
+
+/// ColorScreen
+const String pureColorText = 'Pure Color';
+const String gradientColorText = 'Gradient Color';
+const String pureColorListIsEmptyText = 'Pure Color List is Empty!';
+const String gradientColorListIsEmptyText = 'Gradient Color List is Empty!';
+const String pureColorClipBoardText = 'Pure Color code added to clipboard!';
+const String gradientColorClipBoardText = 'Gradient Color codes added to clipboard!';
+
 
 

@@ -95,6 +95,7 @@ class Stroke<T> extends StatefulWidget {
   final BoxShadow? boxShadow;
   final EdgeInsetsGeometry? margin;
   final Clip? clipBehavior;
+  final LinearGradient? gradient;
 
   const Stroke({
     Key? key,
@@ -116,7 +117,7 @@ class Stroke<T> extends StatefulWidget {
     this.boxShadow,
     this.groupsValue,
     this.margin,
-    this.clipBehavior,
+    this.clipBehavior, this.gradient,
   }) : super(key: key);
 
   @override
@@ -143,7 +144,8 @@ class _StrokeState<T> extends State<Stroke<T>> {
         constraints: BoxConstraints(minHeight: widget.minHeight ?? 0),
         clipBehavior: widget.clipBehavior ?? Clip.none,
         decoration: BoxDecoration(
-          color: widget.backgroundColor ?? Colors.transparent,
+          gradient: widget.gradient,
+          color: widget.backgroundColor,
           borderRadius: widget.radius != null
               ? BorderRadius.circular(widget.radius!)
               : BorderRadius.zero,

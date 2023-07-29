@@ -13,7 +13,6 @@ void preCacheImages(BuildContext context) {
   precacheImage(const AssetImage(Assets.firstOnBoardingPage), context);
   precacheImage(const AssetImage(Assets.secondOnBoardingPage), context);
   precacheImage(const AssetImage(Assets.thirdOnBoardingPage), context);
-  precacheImage(const AssetImage(Assets.defaultHero), context);
   precacheImage(const AssetImage(Assets.placeHolder), context);
 
   /// you can add images here
@@ -22,22 +21,24 @@ void preCacheImages(BuildContext context) {
 
 /// you can use the snackBar as well
 void snackBar(String text, context,
-    {GlobalKey<ScaffoldMessengerState>? scaffoldMessengerKey, Color? color}) {
+    {GlobalKey<ScaffoldMessengerState>? scaffoldMessengerKey, Color? textColor , Color? backgroundColor}) {
   if (scaffoldMessengerKey != null) {
     scaffoldMessengerKey.currentState!.showSnackBar(SnackBar(
+      backgroundColor: backgroundColor,
       duration: const Duration(milliseconds: 1500),
       content: TextView(
         text: text,
-        color: color ?? white,
+        color: textColor ?? white,
         size: 12,
       ),
     ));
   } else {
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      backgroundColor: backgroundColor,
       duration: const Duration(milliseconds: 1500),
       content: TextView(
         text: text,
-        color: color ?? white,
+        color: textColor ?? white,
         size: 12,
       ),
     ));
@@ -50,6 +51,7 @@ String getRandomHexColor() {
   int r = random.nextInt(256);
   int g = random.nextInt(256);
   int b = random.nextInt(256);
+
   /// Create a hex color string in the format "#RRGGBB"
   String hexColor = '0xFF${r.toRadixString(16).padLeft(2, '0')}'
       '${g.toRadixString(16).padLeft(2, '0')}'
@@ -61,10 +63,11 @@ bool isWhiteOrNearWhite(String hexColor, {int threshold = 240}) {
   /// Remove the '0xFF' symbol from the hex color if it exists
   hexColor = hexColor.replaceAll('0xFF', '');
 
-  // Convert the hex color to RGB values
+  /// Convert the hex color to RGB values
   int r = int.parse(hexColor.substring(0, 2), radix: 16);
   int g = int.parse(hexColor.substring(2, 4), radix: 16);
   int b = int.parse(hexColor.substring(4, 6), radix: 16);
+
 
   /// Check if all RGB channels are above the threshold
   return r >= threshold && g >= threshold && b >= threshold;

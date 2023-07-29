@@ -23,7 +23,7 @@ class CustomTabBarView extends StatelessWidget {
     var width = MediaQuery.of(context).size.width;
     return Stroke(
       borderWidth: 0,
-      backgroundColor: outerCheckBoxColor,
+      backgroundColor: outerTapBarColor,
       radius: width * 0.0266,
       width: width,
       child: Padding(
@@ -32,24 +32,24 @@ class CustomTabBarView extends StatelessWidget {
           children: [
             Expanded(
                 child: RectAngleButton(
+                  nameOfButton: firstButton,
+                  textSize: 16,
+                  textColor:
+                  !isSecondButtonClicked ? primaryTextColor : primaryGray,
+                  width: width,
+                  height: width * 0.0986,
+                  color: !isSecondButtonClicked ? white : outerTapBarColor,
+                  onTap: onChanged,
+                  radius: width * 0.0266,
+                )),
+            Expanded(
+                child: RectAngleButton(
               nameOfButton: secondButton,
               textSize: 16,
               textColor: isSecondButtonClicked ? primaryTextColor : primaryGray,
               width: width,
               height: width * 0.0986,
-              color: isSecondButtonClicked ? white : outerCheckBoxColor,
-              onTap: onChanged,
-              radius: width * 0.0266,
-            )),
-            Expanded(
-                child: RectAngleButton(
-              nameOfButton: firstButton,
-              textSize: 16,
-              textColor:
-                  !isSecondButtonClicked ? primaryTextColor : primaryGray,
-              width: width,
-              height: width * 0.0986,
-              color: !isSecondButtonClicked ? white : outerCheckBoxColor,
+              color: isSecondButtonClicked ? white : outerTapBarColor,
               onTap: onChanged,
               radius: width * 0.0266,
             )),
