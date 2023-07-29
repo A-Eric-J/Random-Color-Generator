@@ -1,8 +1,5 @@
 import 'package:test_application/const_values/assets.dart';
-import 'package:test_application/ui/shared/colors.dart';
-import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
-import 'package:test_application/ui/widgets/widget_in_busy_state.dart';
 
 /// [ImageAndIconFill] is a custom Image widget that accepts 2 the types of images => network image
 /// assets image, you can use it in your app
@@ -12,7 +9,6 @@ class ImageAndIconFill extends StatefulWidget {
   final double? height;
   final double? width;
   final VoidCallback? onTap;
-  final bool fromNetWork;
   final BoxFit fit;
   final double? radius;
   final Clip? clipBehavior;
@@ -24,7 +20,6 @@ class ImageAndIconFill extends StatefulWidget {
       this.height,
       this.width,
       this.onTap,
-      this.fromNetWork = false,
       this.fit = BoxFit.fill,
       this.radius,
       this.clipBehavior})
@@ -39,7 +34,6 @@ class _ImageAndIconFillState extends State<ImageAndIconFill> {
 
   @override
   Widget build(BuildContext context) {
-    final placeholderBuilder = PlaceholderBuilder.of(context);
 
     return InkWell(
       onTap: widget.onTap,
@@ -51,20 +45,7 @@ class _ImageAndIconFillState extends State<ImageAndIconFill> {
         clipBehavior: widget.clipBehavior,
         radius: widget.radius ?? 0,
         borderWidth: 0,
-        child: widget.fromNetWork
-            ? NetImage(
-                url: widget.path,
-                fit: BoxFit.fill,
-                netKey: Key('key ${widget.path}'),
-                keyCache: 'key ${widget.path}',
-                placeholder: placeholderBuilder != null
-                    ? placeholderBuilder.builder()(context)
-                    : const WidgetInBusyState(),
-                errorPlaceholder: placeholderBuilder != null
-                    ? placeholderBuilder.errorBuilder()(context)
-                    : const WidgetInBusyState(),
-              )
-            : Image.asset(
+        child: Image.asset(
                 widget.path,
                 fit: widget.fit,
                 color: widget.color,
@@ -229,119 +210,6 @@ class _StrokeState<T> extends State<Stroke<T>> {
     } else {
       return widget.disableBorderColor ?? Colors.transparent;
     }
-  }
-}
-
-/// [NetImage] refers to network image that is a custom version of ExtendedImage that is using in [ImageAndIconFill]
-class NetImage extends StatefulWidget {
-  final Key? netKey;
-  final String? keyCache;
-  final String url;
-  final double? height;
-  final double? width;
-  final int? cacheWidth;
-  final BoxFit fit;
-  final Widget? placeholder;
-  final Widget? errorPlaceholder;
-
-  const NetImage({
-    this.netKey,
-    required this.url,
-    this.height,
-    this.width,
-    this.fit = BoxFit.cover,
-    this.placeholder,
-    this.errorPlaceholder,
-    this.cacheWidth,
-    this.keyCache,
-  }) : super(key: netKey);
-
-  @override
-  State<NetImage> createState() => _NetImageState();
-}
-
-class _NetImageState extends State<NetImage> with TickerProviderStateMixin {
-  AnimationController? animation;
-  Animation<double>? _fadeInFadeOut;
-
-  @override
-  void initState() {
-    super.initState();
-    animation = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 500),
-    );
-    _fadeInFadeOut = Tween<double>(begin: 0.0, end: 1.0).animate(animation!);
-
-    animation!.forward();
-  }
-
-  @override
-  void dispose() {
-    animation!.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return ExtendedImage.network(
-      widget.url,
-      key: widget.netKey,
-      width: widget.height,
-      height: widget.width,
-      cacheWidth: widget.cacheWidth,
-      fit: widget.fit,
-      cache: true,
-      loadStateChanged: (ExtendedImageState state) {
-        Widget renderWidget;
-
-        switch (state.extendedImageLoadState) {
-          case LoadState.loading:
-            animation!.reset();
-
-            renderWidget = widget.placeholder ??
-                SizedBox(
-                  width: widget.width,
-                  height: widget.height,
-                );
-            break;
-          case LoadState.completed:
-            if (state.wasSynchronouslyLoaded) {
-              renderWidget = ExtendedRawImage(
-                image: state.extendedImageInfo?.image,
-                width: widget.width,
-                height: widget.height,
-                fit: widget.fit,
-              );
-            } else {
-              animation!.forward();
-
-              renderWidget = FadeTransition(
-                opacity: _fadeInFadeOut!,
-                child: ExtendedRawImage(
-                  image: state.extendedImageInfo?.image,
-                  width: widget.width,
-                  height: widget.height,
-                  fit: widget.fit,
-                ),
-              );
-            }
-            break;
-          case LoadState.failed:
-            animation!.reset();
-
-            renderWidget = widget.errorPlaceholder ??
-                Container(
-                  color: brandMainColor,
-                  width: widget.width,
-                  height: widget.height,
-                );
-            break;
-        }
-
-        return renderWidget;
-      },
-    );
   }
 }
 
