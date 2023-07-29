@@ -17,6 +17,7 @@ const String thirdOnBoardingPageDesText = 'Third Description';
 
 /// Bottom navigation
 const String homeScreenText = 'Home';
+const String helloThereText = 'Hello there';
 const String colorsScreenText = 'Colors';
 
 

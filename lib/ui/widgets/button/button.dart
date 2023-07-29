@@ -57,10 +57,12 @@ class RectAngleButton extends StatelessWidget {
               ),
             ],
           ),
-          child: TextView(
-            text: nameOfButton,
-            color: textColor ?? white,
-            size: textSize ?? 15,
+          child: Center(
+            child: TextView(
+              text: nameOfButton,
+              color: textColor ?? white,
+              size: textSize ?? 15,
+            ),
           )),
     );
   }

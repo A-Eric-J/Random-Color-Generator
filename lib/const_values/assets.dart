@@ -1,4 +1,5 @@
 const currentAppVersion = 'v1.0.0';
+const whiteHexColor = '0xFFFFFFFF';
 const mainWidthSize = 375;
 
 

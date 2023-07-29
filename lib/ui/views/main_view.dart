@@ -1,3 +1,5 @@
+import 'package:test_application/const_values/assets.dart';
+import 'package:test_application/providers/color_provider.dart';
 import 'package:test_application/providers/main_screen_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:test_application/ui/shared/colors.dart';
@@ -18,6 +20,10 @@ class _MainViewState extends State<MainView> {
   @override
   void initState() {
     super.initState();
+    var colorProvider = Provider.of<ColorProvider>(context,listen: false);
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      colorProvider.setHexColor(whiteHexColor);
+    });
   }
 
   @override
@@ -60,7 +66,7 @@ class _MainViewState extends State<MainView> {
                       label: homeScreenText,
                       activated: false,
                       iconData: Icons.home_outlined),
-                  label: homeScreenText),
+                  label: helloThereText),
               BottomNavigationBarItem(
                   activeIcon: BottomNavigationItem(
                       label: colorsScreenText,
