@@ -1,30 +1,38 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:test_application/main.dart';
+import 'package:test_application/ui/extensions/help_methods.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+  test('getRandomHexColor should return a valid hex color', () {
+    String hexColor = getRandomHexColor();
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    /// Check if the hexColor starts with '0xFF'
+    expect(hexColor.startsWith('0xFF'), true);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    /// Check if the hexColor has the correct length (10 characters including '0xFF')
+    expect(hexColor.length, 10);
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    /// Check if all characters except '0xFF' are valid hexadecimal characters
+    expect(int.tryParse(hexColor.substring(2), radix: 16), isNotNull);
+  });
+
+  test('isWhiteOrNearWhite should return true for white or near-white colors', () {
+    /// Test for white color
+    expect(isWhiteOrNearWhite('0xFFFFFFFF'), true);
+
+    /// Test for near-white colors (with a threshold of 240)
+    expect(isWhiteOrNearWhite('0xFFF0F0F0'), true);
+    expect(isWhiteOrNearWhite('0xFFFAFAFA'), true);
+
+    /// Test for non-white color
+    expect(isWhiteOrNearWhite('0xFFE0E0E0'), false);
+  });
+
+  test('isWhiteOrNearWhite should return false for non-white colors with a custom threshold', () {
+    /// Test for non-white color with threshold of 200
+    expect(isWhiteOrNearWhite('0xFFC0C0C0', threshold: 200), false);
+
+    /// Test for near-white colors (with a custom threshold of 200)
+    expect(isWhiteOrNearWhite('0xFFD0D0D0', threshold: 200), true);
+    expect(isWhiteOrNearWhite('0xFFE0E0E0', threshold: 200), true);
   });
 }
