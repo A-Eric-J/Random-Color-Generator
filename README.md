@@ -1,6 +1,6 @@
-# Solid Software
+# Random Color Generator
 
-Solid Software is a simple and interactive mobile application that allows users to generate random background colors by clicking anywhere on the screen. The app provides two sections for generating pure colors and gradient colors, enhancing the user experience. Additionally, users can view and copy the generated color codes from the Colors page.
+Random Color Generator is a simple and interactive mobile application that allows users to generate random background colors by clicking anywhere on the screen. The app provides two sections for generating pure colors and gradient colors, enhancing the user experience. Additionally, users can view and copy the generated color codes from the Colors page.
 
 ## Features
 
@@ -21,10 +21,10 @@ Solid Software is a simple and interactive mobile application that allows users 
 
 ## Getting Started
 
-To get started with the Solid Software App, follow these steps:
+To get started with the Random Color Generator App, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/A-Eric-J/Solid-Software.git`
-2. Change into the project directory: `cd Solid-Software`
+1. Clone the repository: `git clone https://github.com/A-Eric-J/Random-Color-Generator.git`
+2. Change into the project directory: `cd Random-Color-Generator`
 3. Ensure you have Flutter installed on your machine.
 4. Run the app on an emulator or physical device using `flutter run`.
 
@@ -34,7 +34,7 @@ To get started with the Solid Software App, follow these steps:
 ![Gradient Colors List](screenshots/3.png)
 ## Dependencies
 
-The Solid Software App relies on the following dependencies:
+The Random Color Generator App relies on the following dependencies:
 
 - `flutter`: The core Flutter framework.
 - `provider`: Used for state management to update the background color and bottom navigation state.
@@ -56,7 +56,7 @@ All dependencies are listed in the `pubspec.yaml` file, and you can install them
 
 ## Testing
 
-The Solid Software App has been thoroughly tested to ensure a smooth and bug-free experience. We have included unit tests and widget tests to cover various aspects of the app's functionality. To run the tests, execute the following command:
+The Random Color Generator App has been thoroughly tested to ensure a smooth and bug-free experience. We have included unit tests and widget tests to cover various aspects of the app's functionality. To run the tests, execute the following command:
 
 ```
 flutter test
@@ -71,6 +71,6 @@ flutter analyze
 ```
 
 
-Thank you for using the Solid Software App! We hope you enjoy using it as much as we enjoyed creating it. If you encounter any issues or have any suggestions, please feel free to open an issue on the repository. 
+Thank you for using the Random Color Generator App! We hope you enjoy using it as much as we enjoyed creating it. If you encounter any issues or have any suggestions, please feel free to open an issue on the repository. 
 
 Happy coloring!
